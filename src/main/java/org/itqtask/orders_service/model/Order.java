@@ -3,6 +3,7 @@ package org.itqtask.orders_service.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceCreator;
+import org.springframework.data.domain.Persistable;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
@@ -10,14 +11,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 @Table(name = "orders")
 public class Order {
 
     @Id
-    @Column(value = "id")
     private Long id;
 
     @Column(value = "order_number")
@@ -41,25 +40,25 @@ public class Order {
     @Column(value = "delivery_type")
     private String deliveryType;
 
-    @MappedCollection(idColumn = "order_id")
-    private List<DetailOrder> detailOrders = new ArrayList<>();
+    @MappedCollection(idColumn = "order_no")
+    private Set<DetailOrder> detailOrders;
 
-//    @Override
-//    public String toString() {
-//        return "Order{" +
-//                "id=" + id +
-//                ", orderNo='" + orderNumber + '\'' +
-//                ", totalAmount=" + totalAmount +
-//                ", orderDate='" + orderDate + '\'' +
-//                ", customerName='" + customerName + '\'' +
-//                ", deliveryAddress='" + deliveryAddress + '\'' +
-//                ", paymentType='" + paymentType + '\'' +
-//                ", deliveryType='" + deliveryType + '\'' +
-//                ", detailOrders=" + detailOrders +
-//                '}';
-//    }
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", orderNo='" + orderNumber + '\'' +
+                ", totalAmount=" + totalAmount +
+                ", orderDate='" + orderDate + '\'' +
+                ", customerName='" + customerName + '\'' +
+                ", deliveryAddress='" + deliveryAddress + '\'' +
+                ", paymentType='" + paymentType + '\'' +
+                ", deliveryType='" + deliveryType + '\'' +
+                ", detailOrders=" + detailOrders +
+                '}';
+    }
 
-    public Order(Long id, String orderNumber, Long totalAmount, Date orderDate, String customerName, String deliveryAddress, String paymentType, String deliveryType, List<DetailOrder> detailOrders) {
+    public Order(Long id, String orderNumber, Long totalAmount, Date orderDate, String customerName, String deliveryAddress, String paymentType, String deliveryType, Set<DetailOrder> detailOrders) {
         this.id = id;
         this.orderNumber = orderNumber;
         this.totalAmount = totalAmount;
@@ -138,15 +137,16 @@ public class Order {
         this.deliveryType = deliveryType;
     }
 
-    public List<DetailOrder> getDetailOrders() {
+    public Set<DetailOrder> getDetailOrders() {
         return detailOrders;
     }
 
-    public void setDetailOrders(List<DetailOrder> detailOrders) {
+    public void setDetailOrders(Set<DetailOrder> detailOrders) {
         this.detailOrders = detailOrders;
     }
 
     public void addDetailOrder(DetailOrder detailOrder) {
         this.detailOrders.add(detailOrder);
     }
+
 }

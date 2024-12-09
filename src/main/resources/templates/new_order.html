@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/index.css">
+    <title>Создание заказа</title>
+</head>
+
+<body>
+    <div class="flex column page-wrapper">
+        <h1>СОЗДАНИЕ ЗАКАЗА</h1>
+        <div class="flex btns-wrapper">
+            <div class="btn-wrapper">
+                <button class="btn" onclick="location.href='/'">
+                    НАЗАД
+                </button>
+            </div>
+        </div>
+        <div class="order-wrapper">
+            <div class="flex inputs-wrapper">
+                <div class="field-holder">
+                    <input placeholder=" " class="input-box" type="text" name="customer_name" id="customer_name" oninvalid="this.setCustomValidity('Введите сумму')" required>
+                    <label for="customer_name" class="input-label">ВВЕДИТЕ ФИО</label>
+                </div>
+                <div class="field-holder">
+                    <input placeholder=" " class="input-box" type="text" name="delivery_address" id="delivery_address" oninvalid="this.setCustomValidity('Введите адрес доставки')">
+                    <label for="delivery_address" class="input-label">ВВЕДИТЕ АДРЕС</label>
+                </div>
+            </div>
+            <div class="flex inputs-wrapper">
+                <div class="flex select-wrapper">
+                    <p>Тип оплаты:</p>
+                    <select name="payment_type" id="payment_type">
+                        <option value="Наличные" selected>Наличные</option>
+                        <option value="Карта">Карта</option>
+                    </select>
+                </div>
+                <div class="flex select-wrapper">
+                    <p>Тип доставки:</p>
+                    <select name="delivery_type" id="delivery_type">
+                        <option value="Самовывоз" selected>Самовывоз</option>
+                        <option value="Доставка до двери">Доставка до двери</option>
+                    </select>
+                </div>
+            </div>
+            <div class="flex column products">
+                
+            </div>
+            <div class="flex footer-wrapper">
+                <div class="total-amount-wrapper">
+                    <span>Общая стоимость:</span>
+                    <span class="total-amount">0</span>
+                </div>
+                <button class="btn" id="create-order">
+                    СОЗДАТЬ ЗАКАЗ
+                </button>
+            </div>
+        </div>
+        <div class="flex avalible_products">
+            
+        </div>
+        <div class="flex modal hidediv">
+            <div class="flex column modal-wrapper created-order-successful hidediv">
+                <div class="order-number">
+                </div>
+                <button class="btn continue">
+                    ПРОДОЛЖИТЬ
+                </button>
+            </div>
+            <div class="flex column modal-wrapper created-order-failed hidediv">
+                <div>ПРОИЗОШЛА ОШИБКА. НАПИШИТЕ В ПОДДЕРЖКУ</div>
+                <button class="btn close">
+                    ЗАКРЫТЬ
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/createorder.js"></script>
+</body>
+
+</html>

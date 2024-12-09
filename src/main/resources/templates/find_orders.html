@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/index.css">
+  <title>Поиск заказов</title>
+</head>
+
+<body>
+  <div class="flex column page-wrapper">
+    <div class="flex btns-wrapper">
+      <div class="btn-wrapper">
+        <button class="btn find-by-id-btn">
+          ПОИСК ПО ID
+        </button>
+      </div>
+      <div class="btn-wrapper">
+        <button class="btn find-by-date-and-amount-btn">
+          ПОИСК ПО ДАТЕ И СТОИМОСТИ
+        </button>
+      </div>
+      <div class="btn-wrapper">
+        <button class="btn find-by-range-date-and-exclude-btn">
+          ПОИСК ПО ИНТЕРВАЛУ ДАТ
+        </button>
+      </div>
+      <div class="btn-wrapper">
+        <button class="btn" onclick="location.href='/'">
+          НАЗАД
+        </button>
+      </div>
+    </div>
+    <div class="flex column find-by-id-wrapper hidediv">
+      <div class="id-wrapper">
+        <label for="order-id">Введите ID заказа</label>
+        <input type="number" class="order-id" id="order-id" min="1" value="1">
+        <button class="btn get-order-btn">ПОЛУЧИТЬ</button>
+      </div>
+    </div>
+    <div class="flex column find-by-date-and-amount-wrapper hidediv">
+      <div class="flex date-amount-wrapper">
+        <div class="date-picker-wrapper">
+          <span>Введите дату:</span>
+          <input type="date">
+        </div>
+        <div class="amount-picker-wrapper">
+          <span>Введите сумму больше которой искать заказы</span>
+          <input class="amount-picker" type="number" min="1">
+        </div>
+        <button class="btn get-orders-by-date-and-amount-btn">ПОЛУЧИТЬ</button>
+      </div>
+
+    </div>
+    <div class="flex column find-by-range-date-wrapper hidediv">
+      <div class="flex range-date-and-exclude-product-wrapper">
+        <div class="date-from-picker-wrapper">
+          <span>Дата от:</span>
+          <input type="date">
+        </div>
+        <div class="date-to-picker-wrapper">
+          <span>Дата до:</span>
+          <input type="date">
+        </div>
+        <select name="exclude-product" id="exclude-product">
+          <option value="0">-------</option>
+        </select>
+        <button class="btn get-orders-by-range-and-exclude-product-btn">ПОЛУЧИТЬ</button>
+      </div>
+    </div>
+  </div>
+  <script src="/js/jquery-3.7.1.min.js"></script>
+  <script src="/js/findorders.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,240 @@
+openapi: "3.1.0"
+info:
+  title: "orders_service API"
+  description: "API к первому приложению order_service"
+  version: "1.0.0"
+servers:
+  - url: "http://localhost:8080/"
+tags:
+  - name: orders
+    description: Все запросы связанные с заказами
+  - name: html
+    description: Ссылки на страницы
+paths:
+  /api/orders/{order_id}:
+    get:
+      tags:
+        - orders
+      summary: "Получить заказ по ID"
+      operationId: "getOrderById"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Order"
+  /api/orders:
+    post:
+      tags:
+        - orders
+      summary: "Создать заказ"
+      operationId: "createOrder"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Order"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Order"
+  /api/orders?date={date}&amount={amount}:
+    get:
+      tags:
+        - orders
+      summary: "Получить все заказы по дате, и по общей сумме выше"
+      operationId: "getOrdersByDateAndTotalAmount"
+      parameters:
+        - name: date
+          in: query
+          description: Строка дата в формате(YYYY-MM-DD) для фильтрации заказов
+          required: true
+          schema:
+            type: string
+        - name: amount
+          in: query
+          description: Сумма заказа, выше которой нужны заказы
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Order"
+  /api/orders?date_from={date}&&date_to={date}&article={article}:
+    get:
+      tags:
+        - orders
+      summary: "Получить все заказы по диапазону дат и, исключив товар"
+      operationId: "getOrdersExcludeProductFromToDate"
+      parameters:
+        - name: date_from
+          in: query
+          description: Строка дата в формате(YYYY-MM-DD), начиная от этой даты
+          required: true
+          schema:
+            type: string
+        - name: date_to
+          in: query
+          description: Строка дата в формате(YYYY-MM-DD), заканчивая этой датой
+          required: true
+          schema:
+            type: string
+        - name: article
+          in: query
+          description: Артикул товара, который стоит исключить из списка
+          required: true
+          schema:
+            type: long
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Order"
+  /api/products:
+    get:
+      tags:
+        - orders
+      summary: "Получение списка доступных к заказу товаров"
+      operationId: "getProducts"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Product"
+  /api/numbers:
+    get:
+      tags:
+        - orders
+      summary: "Получить рандомно сгенерированное число с другого сервиса"
+      operationId: "getGeneratedOrderNumber"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /:
+    get:
+      tags:
+        - html
+      summary: "Главная страница"
+      operationId: "index"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /new_order:
+    get:
+      tags:
+        - html
+      summary: "Страница создания заказа"
+      operationId: "newOrder"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /find_order:
+    get:
+      tags:
+        - html
+      summary: "Страница создания заказа"
+      operationId: "findOrder"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+components:
+  schemas:
+    DetailOrder:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+          format: "int64"
+        productArticle:
+          type: "integer"
+          format: "int64"
+        productName:
+          type: "string"
+        productAmount:
+          type: "integer"
+          format: "int32"
+        productPrice:
+          type: "integer"
+          format: "int32"
+        orderNo:
+          type: "integer"
+          format: "int64"
+    Order:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+          format: "int64"
+        orderNumber:
+          type: "string"
+        totalAmount:
+          type: "integer"
+          format: "int64"
+        orderDate:
+          type: "string"
+          format: "date"
+        customerName:
+          type: "string"
+        deliveryAddress:
+          type: "string"
+        paymentType:
+          type: "string"
+        deliveryType:
+          type: "string"
+        detailOrders:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/DetailOrder"
+    Product:
+      type: "object"
+      properties:
+        name:
+          type: "string"
+        article:
+          type: "integer"
+          format: "int64"
+        price:
+          type: "integer"
+          format: "int32"

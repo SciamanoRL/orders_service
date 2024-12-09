@@ -9,14 +9,14 @@ import org.springframework.data.relational.core.mapping.Table;
 
 
 
-@Table(name = "products")
+@Table(name = "detail_order")
 public class DetailOrder {
 
     @Id
     @Column(value = "id")
     private Long id;
 
-    @Column(value = "product_article")
+    @Column("product_article")
     private Long productArticle;
 
     @Column(value = "product_name")
@@ -28,8 +28,8 @@ public class DetailOrder {
     @Column(value = "product_price")
     private int productPrice;
 
-    @Column("order_id")
-    private Long orderId;
+    @Column("order_no")
+    private Long orderNo;
 
     @Override
     public String toString() {
@@ -39,18 +39,18 @@ public class DetailOrder {
                 ", productName='" + productName + '\'' +
                 ", productAmount=" + productAmount +
                 ", productPrice=" + productPrice +
-                ", orderId=" + orderId +
+                ", orderId=" + orderNo +
                 '}';
     }
 
 
-    public DetailOrder(Long id, Long productArticle, String productName, int productAmount, int productPrice, Long orderId) {
+    public DetailOrder(Long id, Long productArticle, String productName, int productAmount, int productPrice, Long orderNo) {
         this.id = id;
         this.productArticle = productArticle;
         this.productName = productName;
         this.productAmount = productAmount;
         this.productPrice = productPrice;
-        this.orderId = orderId;
+        this.orderNo = orderNo;
     }
 
     public DetailOrder() {
@@ -96,11 +96,12 @@ public class DetailOrder {
         this.productPrice = productPrice;
     }
 
-    public Long getOrderId() {
-        return orderId;
+    public Long getOrderNo() {
+        return orderNo;
     }
 
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
+    public void setOrderNo(Long orderNo) {
+        this.orderNo = orderNo;
     }
+
 }

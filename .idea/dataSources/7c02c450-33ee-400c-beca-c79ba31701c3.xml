@@ -3,9 +3,9 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.53">
     <root id="1">
       <DateStyle>dmy</DateStyle>
-      <IntrospectionStateNumber>1003</IntrospectionStateNumber>
+      <IntrospectionStateNumber>1102</IntrospectionStateNumber>
       <ServerVersion>17.2</ServerVersion>
-      <StartupTime>1733009660</StartupTime>
+      <StartupTime>1733214226</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -800,7 +800,7 @@ false Zulu
 14650||10|C|G
 14650||-9223372036854775808|U|G
 14650||10|U|G</Grants>
-      <IntrospectionStateNumber>1003</IntrospectionStateNumber>
+      <IntrospectionStateNumber>1102</IntrospectionStateNumber>
       <ObjectId>16388</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -4227,177 +4227,177 @@ false Zulu
     <schema id="265" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>1003</IntrospectionStateNumber>
-      <LastIntrospectionLocalTimestamp>2024-12-02.19:26:58</LastIntrospectionLocalTimestamp>
+      <IntrospectionStateNumber>1102</IntrospectionStateNumber>
+      <LastIntrospectionLocalTimestamp>2024-12-03.13:28:13</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>532</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
     </schema>
-    <sequence id="266" parent="265" name="orders_id_seq">
-      <ObjectId>16511</ObjectId>
+    <sequence id="266" parent="265" name="detail_order_id_seq">
+      <ObjectId>24733</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
-      <StateNumber>956</StateNumber>
+      <StateNumber>1058</StateNumber>
       <StoredType>bigint|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <sequence id="267" parent="265" name="products_id_seq">
-      <ObjectId>16520</ObjectId>
+    <sequence id="267" parent="265" name="orders_id_seq">
+      <ObjectId>24724</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
-      <StateNumber>958</StateNumber>
+      <StateNumber>1056</StateNumber>
       <StoredType>bigint|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <table id="268" parent="265" name="orders">
-      <ObjectId>16512</ObjectId>
-      <StateNumber>958</StateNumber>
+    <table id="268" parent="265" name="detail_order">
+      <ObjectId>24734</ObjectId>
+      <StateNumber>1058</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="269" parent="265" name="products">
-      <ObjectId>16521</ObjectId>
-      <StateNumber>958</StateNumber>
+    <table id="269" parent="265" name="orders">
+      <ObjectId>24725</ObjectId>
+      <StateNumber>1058</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
     <column id="270" parent="268" name="id">
+      <DefaultExpression>nextval(&apos;detail_order_id_seq&apos;::regclass)</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>1058</StateNumber>
+      <StoredType>bigint|0s</StoredType>
+      <SequenceId>24733</SequenceId>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="271" parent="268" name="product_article">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>1058</StateNumber>
+      <StoredType>bigint|0s</StoredType>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="272" parent="268" name="product_name">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StateNumber>1058</StateNumber>
+      <StoredType>varchar(255)|0s</StoredType>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="273" parent="268" name="product_amount">
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StateNumber>1058</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="274" parent="268" name="product_price">
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StateNumber>1058</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="275" parent="268" name="order_no">
+      <Position>6</Position>
+      <StateNumber>1058</StateNumber>
+      <StoredType>bigint|0s</StoredType>
+      <TypeId>20</TypeId>
+    </column>
+    <foreign-key id="276" parent="268" name="fk_order">
+      <ColNames>order_no</ColNames>
+      <ObjectId>24740</ObjectId>
+      <OnDelete>set-null</OnDelete>
+      <StateNumber>1058</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>24725</RefTableId>
+    </foreign-key>
+    <index id="277" parent="268" name="detail_order_pkey">
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>24738</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>1101</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="278" parent="268" name="detail_order_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>24739</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>1101</StateNumber>
+      <UnderlyingIndexId>24738</UnderlyingIndexId>
+    </key>
+    <column id="279" parent="269" name="id">
       <DefaultExpression>nextval(&apos;orders_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>956</StateNumber>
+      <StateNumber>1056</StateNumber>
       <StoredType>bigint|0s</StoredType>
-      <SequenceId>16511</SequenceId>
+      <SequenceId>24724</SequenceId>
       <TypeId>20</TypeId>
     </column>
-    <column id="271" parent="268" name="order_number">
+    <column id="280" parent="269" name="order_number">
       <NotNull>1</NotNull>
       <Position>2</Position>
-      <StateNumber>956</StateNumber>
+      <StateNumber>1056</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="272" parent="268" name="total_amount">
+    <column id="281" parent="269" name="total_amount">
       <NotNull>1</NotNull>
       <Position>3</Position>
-      <StateNumber>956</StateNumber>
+      <StateNumber>1056</StateNumber>
       <StoredType>bigint|0s</StoredType>
       <TypeId>20</TypeId>
     </column>
-    <column id="273" parent="268" name="customer_name">
+    <column id="282" parent="269" name="customer_name">
       <NotNull>1</NotNull>
       <Position>4</Position>
-      <StateNumber>956</StateNumber>
+      <StateNumber>1056</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="274" parent="268" name="address">
+    <column id="283" parent="269" name="address">
       <NotNull>1</NotNull>
       <Position>5</Position>
-      <StateNumber>956</StateNumber>
+      <StateNumber>1056</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="275" parent="268" name="delivery_type">
+    <column id="284" parent="269" name="delivery_type">
       <Position>6</Position>
-      <StateNumber>956</StateNumber>
+      <StateNumber>1056</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="276" parent="268" name="payment_type">
+    <column id="285" parent="269" name="payment_type">
       <Position>7</Position>
-      <StateNumber>956</StateNumber>
+      <StateNumber>1056</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="277" parent="268" name="order_date">
+    <column id="286" parent="269" name="order_date">
       <Position>8</Position>
-      <StateNumber>956</StateNumber>
+      <StateNumber>1056</StateNumber>
       <StoredType>date|0s</StoredType>
       <TypeId>1082</TypeId>
     </column>
-    <index id="278" parent="268" name="orders_pkey">
+    <index id="287" parent="269" name="orders_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16518</ObjectId>
+      <ObjectId>24731</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>956</StateNumber>
+      <StateNumber>1094</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="279" parent="268" name="orders_pkey">
+    <key id="288" parent="269" name="orders_pkey">
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16519</ObjectId>
+      <ObjectId>24732</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>956</StateNumber>
-      <UnderlyingIndexId>16518</UnderlyingIndexId>
-    </key>
-    <column id="280" parent="269" name="id">
-      <DefaultExpression>nextval(&apos;products_id_seq&apos;::regclass)</DefaultExpression>
-      <NotNull>1</NotNull>
-      <Position>1</Position>
-      <StateNumber>958</StateNumber>
-      <StoredType>bigint|0s</StoredType>
-      <SequenceId>16520</SequenceId>
-      <TypeId>20</TypeId>
-    </column>
-    <column id="281" parent="269" name="product_article">
-      <NotNull>1</NotNull>
-      <Position>2</Position>
-      <StateNumber>958</StateNumber>
-      <StoredType>bigint|0s</StoredType>
-      <TypeId>20</TypeId>
-    </column>
-    <column id="282" parent="269" name="product_name">
-      <NotNull>1</NotNull>
-      <Position>3</Position>
-      <StateNumber>958</StateNumber>
-      <StoredType>varchar(255)|0s</StoredType>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="283" parent="269" name="product_amount">
-      <NotNull>1</NotNull>
-      <Position>4</Position>
-      <StateNumber>958</StateNumber>
-      <StoredType>integer|0s</StoredType>
-      <TypeId>23</TypeId>
-    </column>
-    <column id="284" parent="269" name="product_price">
-      <NotNull>1</NotNull>
-      <Position>5</Position>
-      <StateNumber>958</StateNumber>
-      <StoredType>integer|0s</StoredType>
-      <TypeId>23</TypeId>
-    </column>
-    <column id="285" parent="269" name="order_id">
-      <Position>6</Position>
-      <StateNumber>958</StateNumber>
-      <StoredType>bigint|0s</StoredType>
-      <TypeId>20</TypeId>
-    </column>
-    <foreign-key id="286" parent="269" name="fk_order">
-      <ColNames>order_id</ColNames>
-      <ObjectId>16527</ObjectId>
-      <OnDelete>set-null</OnDelete>
-      <StateNumber>958</StateNumber>
-      <RefKeyColPositions>1</RefKeyColPositions>
-      <RefTableId>16512</RefTableId>
-    </foreign-key>
-    <index id="287" parent="269" name="products_pkey">
-      <ColNames>id</ColNames>
-      <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16525</ObjectId>
-      <Primary>1</Primary>
-      <StateNumber>1002</StateNumber>
-      <Unique>1</Unique>
-      <AccessMethodId>403</AccessMethodId>
-    </index>
-    <key id="288" parent="269" name="products_pkey">
-      <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16526</ObjectId>
-      <Primary>1</Primary>
-      <StateNumber>1002</StateNumber>
-      <UnderlyingIndexId>16525</UnderlyingIndexId>
+      <StateNumber>1094</StateNumber>
+      <UnderlyingIndexId>24731</UnderlyingIndexId>
     </key>
   </database-model>
 </dataSource>

@@ -12,5 +12,5 @@ public interface OrderService {
     Optional<Order> getOrder(long id);
     List<Order> findAll();
     List<Order> findByOrderDateAndTotalAmountGreaterThan(Date date, long amount);
-    String getGeneratedOrderNumber();
+    List<Order> findOrdersByOrderDateBetween(Date dateFrom, Date dateTo, Long article);
 }

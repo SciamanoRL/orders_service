@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: orders_service
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:3000/itqdb
+    username: postgres
+    password: 5DcklM74
