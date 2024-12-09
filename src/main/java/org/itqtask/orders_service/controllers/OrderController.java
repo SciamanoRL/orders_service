@@ -2,7 +2,6 @@ package org.itqtask.orders_service.controllers;
 
 import org.itqtask.orders_service.model.Order;
 //import org.itqtask.orders_service.repository.JdbcOrderRepository;
-import org.itqtask.orders_service.services.NumberGeneratorService;
 import org.itqtask.orders_service.services.OrderServiceImpl;
 
 import org.itqtask.orders_service.utils.Product;
@@ -25,9 +24,6 @@ public class OrderController {
 //
     @Autowired
     private OrderServiceImpl orderService;
-
-    @Autowired
-    private NumberGeneratorService numberGeneratorService;
 
     @Autowired
     private ProductsList productsList;
@@ -77,15 +73,5 @@ public class OrderController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-    @GetMapping("/numbers")
-    public String getGeneratedOrderNumber() {
-        try {
-            return numberGeneratorService.getGeneratedOrderNumber();
-        } catch (Exception e) {
-            return "not_generated";
-        }
-    }
-
 
 }
