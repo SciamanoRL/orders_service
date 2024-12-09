@@ -5,6 +5,7 @@ info:
   version: "1.0.0"
 servers:
   - url: "http://localhost:8080/"
+  - url: "http://localhost:3001/"
 tags:
   - name: orders
     description: Все запросы связанные с заказами
@@ -127,7 +128,10 @@ paths:
                 type: "array"
                 items:
                   $ref: "#/components/schemas/Product"
-  /api/numbers:
+  /numbers:
+    servers:
+      - url: "http://localhost:3001/"
+        description: "Number generator Service сервер"
     get:
       tags:
         - orders
